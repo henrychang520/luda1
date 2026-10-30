@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<!-- morcept-design: layout=local; motion=draw -->
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>綠大電動車｜板橋南雅老店・微型電動二輪車・親子車・代步車</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Chiron+Hei+HK:wght@700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{lime:'#9cc92a',leaf:'#4a6612',moss:'#e4eecb',cream:'#f5f8ec',orange:'#f29a1a',ink:'#231815',bark:'#5a4a42'},fontFamily:{hand:['"Bricolage Grotesque"','"Chiron Hei HK"','"Noto Sans TC"','sans-serif'],sans:['"Noto Sans TC"','sans-serif'],num:['"Bricolage Grotesque"','"Noto Sans TC"','sans-serif']},maxWidth:{site:'1310px'}}}}
+</script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+html{scroll-behavior:auto}
+body{background:#f5f8ec;color:#231815;font-family:"Noto Sans TC",sans-serif;caret-color:#f29a1a;-webkit-font-smoothing:antialiased}
+::selection{background:#9cc92a;color:#231815}
+:focus-visible{outline:3px solid #f29a1a;outline-offset:3px;border-radius:6px}
+a{text-underline-offset:.25em}
+.tnum,table{font-variant-numeric:tabular-nums}
+.font-hand,.font-hand.font-bold{font-weight:900;letter-spacing:-.01em;font-synthesis:none;font-feature-settings:"palt" 1}
+h1.font-hand,h2.font-hand{letter-spacing:-.015em;line-height:1.14}
+[data-page]{display:none}[data-page].on{display:block}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;padding:.8rem 1.4rem;font-weight:700;transition:transform .18s cubic-bezier(.23,1,.32,1),background-color .2s,box-shadow .2s,color .2s}
+.btn:active,.press:active{transform:scale(.97)}
+.btn-o{background:#f29a1a;color:#231815}
+.btn-flow{background:linear-gradient(110deg,#f29a1a,#f7b851,#f29a1a,#e8890a);background-size:300% 100%;animation:flow 6s ease-in-out infinite;color:#231815}
+@keyframes flow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.btn-l{background:#231815;color:#f5f8ec}
+.btn-g{border:2px solid #231815;color:#231815}
+@media (hover:hover) and (pointer:fine){
+.btn-o:hover,.btn-flow:hover{box-shadow:0 10px 24px -10px rgba(242,154,26,.8);transform:translateY(-2px)}
+.btn-l:hover{background:#4a6612}.btn-g:hover{background:#231815;color:#f5f8ec}
+.nav a:hover{color:#4a6612}.pcard:hover .pimg img{transform:scale(1.04)}.pcard:hover{box-shadow:0 18px 34px -18px rgba(35,24,21,.35)}
+.lnk:hover{text-decoration:underline}.chip:hover{border-color:#231815}.icon-b:hover{background:#e4eecb}
+.sw:hover{transform:scale(1.15)}}
+.nav a{position:relative;transition:color .18s}
+.nav a.active{color:#4a6612}
+.nav a.active::after{content:"";position:absolute;left:10%;right:10%;bottom:-6px;height:3px;border-radius:3px;background:#9cc92a}
+.icon-b{width:42px;height:42px;display:inline-grid;place-items:center;border-radius:999px;transition:background .18s,transform .18s}
+.icon-b:active{transform:scale(.95)}
+#hdr{transition:box-shadow .25s,padding .25s}
+#hdr.small{box-shadow:0 8px 24px -16px rgba(35,24,21,.4)}
+#hdr.small .logo{height:34px}
+.logo{height:46px;transition:height .25s}
+.plate{border:2.5px solid #231815;border-radius:10px;background:#fff}
+.tag{border-radius:999px;padding:.2rem .7rem;font-size:.78rem;font-weight:700}
+.pcard{background:#fff;border-radius:16px;overflow:hidden;transition:box-shadow .25s}
+.pimg{position:relative;transition:background-color .25s}
+.pimg img{transition:transform .5s cubic-bezier(.23,1,.32,1),filter .25s}
+.tint{position:absolute;inset:0;mix-blend-mode:multiply;opacity:0;transition:opacity .25s,background-color .25s;pointer-events:none}
+.sw{width:22px;height:22px;border-radius:999px;border:2px solid #fff;box-shadow:0 0 0 1.5px #cfdcae;transition:transform .18s,box-shadow .18s;cursor:pointer}
+.sw.on{box-shadow:0 0 0 2px #231815}
+.chip{border:2px solid #cfdcae;border-radius:999px;padding:.4rem 1rem;font-weight:500;transition:border-color .18s,background .18s}
+.chip.on{background:#231815;color:#f5f8ec;border-color:#231815}
+.cmpb.on{background:#9cc92a;border-color:#4a6612}
+.modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:1rem;background:rgba(35,24,21,.55)}
+.modal.on{display:flex}
+.panel{background:#f5f8ec;border-radius:16px;max-height:92vh;overflow:auto;width:100%;box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+#drawer{transform:translateX(105%);transition:transform .3s cubic-bezier(.23,1,.32,1)}
+#drawer.on{transform:none}
+#veil{opacity:0;pointer-events:none;transition:opacity .25s}
+#veil.on{opacity:1;pointer-events:auto}
+#cmpBar{transform:translate(-50%,160%);transition:transform .3s cubic-bezier(.23,1,.32,1)}
+#cmpBar.on{transform:translate(-50%,0)}
+.acc-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s cubic-bezier(.23,1,.32,1)}
+.acc.open .acc-b{grid-template-rows:1fr}
+.acc.open .acc-i{transform:rotate(45deg)}
+.acc-i{transition:transform .2s}
+.field{width:100%;border-radius:10px;border:2px solid #d6e3b5;background:#fff;padding:.7rem .9rem;transition:border-color .18s}
+.field:focus{outline:none;border-color:#4a6612}
+.caret{display:inline-block;width:2px;height:1em;background:#f29a1a;margin-left:2px;vertical-align:-.1em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.bounce{animation:bnc 1.8s cubic-bezier(.23,1,.32,1) infinite}
+@keyframes bnc{0%,100%{transform:translateY(0)}40%{transform:translateY(10px)}}
+.floaty{animation:fl 6s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+@media (prefers-reduced-motion:reduce){.bounce,.floaty,.btn-flow,.caret{animation:none}}
+.slides{transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.ruled{background-image:linear-gradient(#dfe9c4 1px,transparent 1px);background-size:100% 2.1rem}
+#toast{transform:translate(-50%,140%);transition:transform .3s cubic-bezier(.23,1,.32,1)}
+#toast.on{transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header id="hdr" class="sticky top-0 z-50 bg-cream/95 py-3">
+  <div class="max-w-site mx-auto px-5 flex items-center gap-4">
+    <a href="#home" class="press shrink-0"><img class="logo w-auto" src="https://www.lu-da.com.tw/wp-content/uploads/2022/08/logo_04.png" alt="綠大電動車 Logo"></a>
+    <nav class="nav hidden xl:flex items-center gap-[1.15rem] ml-auto text-[15px] font-medium" id="mainNav">
+      <a href="#home">首頁</a><a href="#about">關於我們</a><a href="#services">服務項目</a><a href="#products">產品介紹</a><a href="#news">最新消息</a><a href="#faq">常見問題</a><a href="#contact">聯絡我們</a><a href="#parts">產品配件</a><a href="#license">領牌與保險須知</a><a href="#charge">全省充電站資訊</a>
+    </nav>
+    <div class="flex items-center gap-1 ml-auto xl:ml-3">
+      <button class="icon-b" data-open="searchM" aria-label="站內搜尋"><i data-lucide="search" class="w-5 h-5"></i></button>
+      <button class="icon-b" data-open="loginM" aria-label="會員登入"><i data-lucide="user-round" class="w-5 h-5"></i></button>
+      <button class="icon-b relative" id="cartBtn" aria-label="配件購物車"><i data-lucide="shopping-bag" class="w-5 h-5"></i><span id="cartCount" class="absolute -top-0.5 -right-0.5 min-w-[20px] h-5 px-1 rounded-full bg-orange text-ink text-[11px] font-bold grid place-items-center font-num">0</span></button>
+      <button class="icon-b xl:hidden" id="burger" aria-label="開啟選單"><i data-lucide="menu" class="w-6 h-6"></i></button>
+    </div>
+  </div>
+  <div id="mnav" class="hidden xl:hidden border-t border-moss bg-cream">
+    <div class="nav max-w-site mx-auto px-5 py-3 grid grid-cols-2 gap-x-4 text-lg font-bold"></div>
+  </div>
+</header>
+
+<main>
+<!-- ================= HOME ================= -->
+<section data-page="home">
+  <div class="max-w-site mx-auto px-5 pt-6 pb-14 grid lg:grid-cols-12 gap-8 items-center">
+    <div class="lg:col-span-6 order-2 lg:order-1">
+      <p class="hero-chip inline-flex items-center gap-2 bg-moss text-leaf font-bold rounded-full px-4 py-1.5 text-sm"><i data-lucide="map-pin" class="w-4 h-4"></i>板橋南雅夜市對面・在地十多年</p>
+      <h1 class="font-hand font-bold text-[2.7rem] sm:text-6xl lg:text-[4.6rem] leading-[1.12] mt-5">
+        <span class="block overflow-hidden"><span class="hl block">先騎一圈，</span></span>
+        <span class="block overflow-hidden"><span class="hl block">再決定<span class="text-leaf">帶哪台回家</span>。</span></span>
+      </h1>
+      <p class="hero-sub text-xl sm:text-2xl mt-6 font-medium min-h-[2.2em]">店裡現在就能試乘：<span id="typing" class="text-leaf font-bold"></span><span class="caret"></span></p>
+      <ul class="hero-chip mt-6 flex flex-wrap gap-2 text-[15px]">
+        <li class="plate px-3 py-1.5 flex items-center gap-1.5"><i data-lucide="credit-card" class="w-4 h-4"></i>可刷卡</li>
+        <li class="plate px-3 py-1.5 flex items-center gap-1.5"><i data-lucide="bike" class="w-4 h-4"></i>到店試乘</li>
+        <li class="plate px-3 py-1.5 flex items-center gap-1.5"><i data-lucide="truck" class="w-4 h-4"></i>台北新北送車到府</li>
+      </ul>
+      <div class="hero-chip mt-8 flex flex-wrap gap-3">
+        <a href="#products" class="btn btn-flow">看車款與比較<i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+        <a href="tel:0222722860" class="btn btn-g font-num"><i data-lucide="phone" class="w-5 h-5"></i>02-2272-2860</a>
+      </div>
+      <p class="hero-chip mt-5 text-bark text-sm">營業：週二至週六 10:30–20:00（週日、一公休）・新北市板橋區南雅西路二段5號1樓</p>
+    </div>
+    <div class="lg:col-span-6 order-1 lg:order-2 relative">
+      <div class="hero-img rounded-[16px] overflow-hidden aspect-[4/3] bg-moss">
+        <img src="https://www.lu-da.com.tw/wp-content/uploads/2022/08/banner.jpg" alt="綠大電動車板橋南雅門市的車款陳列" class="w-full h-full object-cover">
+      </div>
+      <div class="floaty absolute -bottom-6 -left-4 sm:-left-8 bg-lime rounded-full w-28 h-28 sm:w-32 sm:h-32 grid place-items-center text-center shadow-[0_14px_30px_-14px_rgba(35,24,21,.5)]">
+        <div><i data-lucide="plug-zap" class="w-7 h-7 mx-auto"></i><p class="font-hand font-bold leading-tight mt-1 text-sm">插家用插座<br>就能充</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center pb-6"><a href="#hot" data-scroll class="bounce inline-grid place-items-center w-11 h-11 rounded-full bg-ink text-cream" aria-label="往下看熱門車款"><i data-lucide="chevron-down" class="w-5 h-5"></i></a></div>
+
+  <div id="hot" class="bg-white py-20">
+    <div class="max-w-site mx-auto px-5">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-10" data-reveal>
+        <h2 class="font-hand font-bold text-4xl sm:text-5xl">店裡最常被試乘的六台</h2>
+        <p class="max-w-md text-bark">滑過色點就能換顏色看；勾「比較」挑兩台並排看規格。看中了來店試騎。</p>
+      </div>
+      <div id="hotGrid" class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
+      <div class="mt-10 text-center"><a href="#products" class="btn btn-l">看全部車款<i data-lucide="arrow-right" class="w-5 h-5"></i></a></div>
+    </div>
+  </div>
+
+  <div class="py-24 relative overflow-hidden">
+    <div class="max-w-site mx-auto px-5">
+      <h2 class="font-hand font-bold text-4xl sm:text-5xl max-w-2xl" data-reveal>從試乘到上路，<br>中間的麻煩事我們陪你走。</h2>
+      <div class="relative mt-14">
+        <svg class="absolute left-[22px] md:left-0 top-0 h-full md:h-auto md:w-full md:top-[34px] pointer-events-none" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+          <path class="hidden md:block" data-draw d="M10 20 C 200 -10, 300 50, 480 20 S 760 -10, 900 20 S 1100 50, 1190 20" fill="none" stroke="#9cc92a" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <svg class="md:hidden absolute left-[18px] top-4 bottom-4 w-3 h-[calc(100%-2rem)]" viewBox="0 0 10 400" preserveAspectRatio="none" aria-hidden="true"><path data-draw d="M5 0 L5 400" stroke="#9cc92a" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+        <ol class="relative grid md:grid-cols-5 gap-8 md:gap-5">
+          <li class="flex md:block gap-4"><span class="shrink-0 w-11 h-11 md:w-[70px] md:h-[70px] rounded-full bg-ink text-lime grid place-items-center font-num font-bold text-lg md:text-2xl">1</span><div class="md:mt-5"><h3 class="font-hand text-2xl font-bold">來店試乘</h3><p class="mt-1 text-bark">輕小款、中型、大型都牽出來給你騎，身高腿長合不合一試就知道。</p></div></li>
+          <li class="flex md:block gap-4"><span class="shrink-0 w-11 h-11 md:w-[70px] md:h-[70px] rounded-full bg-ink text-lime grid place-items-center font-num font-bold text-lg md:text-2xl">2</span><div class="md:mt-5"><h3 class="font-hand text-2xl font-bold">刷卡付款</h3><p class="mt-1 text-bark">現場可刷卡；分期方式請直接問門市。</p></div></li>
+          <li class="flex md:block gap-4"><span class="shrink-0 w-11 h-11 md:w-[70px] md:h-[70px] rounded-full bg-ink text-lime grid place-items-center font-num font-bold text-lg md:text-2xl">3</span><div class="md:mt-5"><h3 class="font-hand text-2xl font-bold">掛牌與保險</h3><p class="mt-1 text-bark">微型電動二輪車免駕照，但要掛牌、保強制險。文件怎麼備，我們一次講清楚。</p></div></li>
+          <li class="flex md:block gap-4"><span class="shrink-0 w-11 h-11 md:w-[70px] md:h-[70px] rounded-full bg-ink text-lime grid place-items-center font-num font-bold text-lg md:text-2xl">4</span><div class="md:mt-5"><h3 class="font-hand text-2xl font-bold">送車到府</h3><p class="mt-1 text-bark">一通電話，台北、新北送到家門口。</p></div></li>
+          <li class="flex md:block gap-4"><span class="shrink-0 w-11 h-11 md:w-[70px] md:h-[70px] rounded-full bg-orange text-ink grid place-items-center font-num font-bold text-lg md:text-2xl">5</span><div class="md:mt-5"><h3 class="font-hand text-2xl font-bold">維修與救援</h3><p class="mt-1 text-bark">半路沒電、故障？專業貨車道路救援收送回店修。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-lime py-20">
+    <div class="max-w-site mx-auto px-5 grid md:grid-cols-12 gap-10 items-center">
+      <div class="md:col-span-5" data-reveal><div class="rounded-[16px] overflow-hidden aspect-[4/5]"><img src="https://www.lu-da.com.tw/wp-content/uploads/2026/01/綠大廣告板-03.jpg" alt="綠大電動車門市廣告看板" class="w-full h-full object-cover"></div></div>
+      <blockquote class="md:col-span-7" data-reveal>
+        <i data-lucide="quote" class="w-10 h-10 text-leaf"></i>
+        <p class="font-hand text-3xl sm:text-4xl leading-snug mt-4">在板橋這十多年，看著好多家庭從油車換成電動車。對長輩來說，一台好騎的電動車就是出門的底氣。我們不只想賣車，是想幫每個人找到合自己生活節奏的那台「安心座騎」。</p>
+        <footer class="mt-6 font-bold text-ink/80">— 綠大電動車 板橋南雅店</footer>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="py-20">
+    <div class="max-w-site mx-auto px-5">
+      <div class="flex items-end justify-between gap-4 mb-8">
+        <h2 class="font-hand font-bold text-4xl" data-reveal>店門口最新看板</h2>
+        <div class="flex gap-2"><button class="icon-b bg-white" id="sPrev" aria-label="上一張"><i data-lucide="chevron-left"></i></button><button class="icon-b bg-white" id="sNext" aria-label="下一張"><i data-lucide="chevron-right"></i></button></div>
+      </div>
+      <div class="overflow-hidden rounded-[16px] bg-white" data-wipe>
+        <div id="slides" class="slides flex">
+          <img src="https://www.lu-da.com.tw/wp-content/uploads/2026/07/159778.jpg" alt="綠大電動車活動看板一" class="w-full shrink-0 aspect-[16/7] object-cover">
+          <img src="https://www.lu-da.com.tw/wp-content/uploads/2026/05/150568.jpg" alt="綠大電動車活動看板二" class="w-full shrink-0 aspect-[16/7] object-cover">
+          <img src="https://www.lu-da.com.tw/wp-content/uploads/2026/07/159534.jpg" alt="綠大電動車活動看板三" class="w-full shrink-0 aspect-[16/7] object-cover">
+          <img src="https://www.lu-da.com.tw/wp-content/uploads/2026/05/150567.jpg" alt="綠大電動車活動看板四" class="w-full shrink-0 aspect-[16/7] object-cover">
+          <img src="https://www.lu-da.com.tw/wp-content/uploads/2026/03/16s廣告板-02.jpg" alt="16S親子車廣告看板" class="w-full shrink-0 aspect-[16/7] object-cover">
+        </div>
+      </div>
+      <div id="dots" class="flex justify-center gap-2 mt-4"></div>
+    </div>
+  </div>
+
+  <div class="bg-white py-20">
+    <div class="max-w-site mx-auto px-5 grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-4" data-reveal>
+        <h2 class="font-hand font-bold text-4xl">法規又改了？<br>先看這裡。</h2>
+        <p class="mt-4 text-bark">掛牌、強制險、第三責任險，我們把重點整理成短文。</p>
+        <a href="#news" class="btn btn-g mt-6">全部消息</a>
+      </div>
+      <ul class="lg:col-span-8 divide-y-2 divide-moss" id="homeNews"></ul>
+    </div>
+  </div>
+  <div class="py-20">
+    <div class="max-w-site mx-auto px-5">
+      <div class="bg-ink text-cream rounded-[16px] p-8 sm:p-14 grid md:grid-cols-2 gap-8 items-center" data-reveal>
+        <h2 class="font-hand font-bold text-4xl sm:text-5xl">這週二到週六，<br><span class="text-lime">店裡等你來試。</span></h2>
+        <div class="space-y-3">
+          <p class="text-cream/85">南雅夜市對面、彬彬幼稚園旁。先打電話或加 LINE 說想看哪台，我們先把車充好電。</p>
+          <div class="flex flex-wrap gap-3 pt-2"><a href="#contact" class="btn btn-o">預約試乘</a><a href="tel:0222722860" class="btn border-2 border-cream/60 text-cream font-num">02-2272-2860</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section data-page="about">
+  <div class="max-w-site mx-auto px-5 py-16 grid lg:grid-cols-12 gap-10 items-start">
+    <div class="lg:col-span-7">
+      <h1 class="font-hand font-bold text-5xl sm:text-6xl leading-tight" data-reveal>2009 年開門，<br>到現在還在南雅西路。</h1>
+      <div class="mt-8 space-y-5 text-[17px] leading-8 max-w-[65ch]" data-reveal>
+        <p>綠大國際有限公司自 2009 年 6 月設立。我們很早就覺得，環保這件事現在不做，明天就會後悔。</p>
+        <p>面對物價上漲、生活成本變高，大家要的是省油錢、好停車、安靜不吵的交通工具。我們的挑戰，是在理想與現實之間，幫客人挑到真的適合的那一台。</p>
+        <p>店裡有完整的產品系列：電動機車、微型電動二輪車、電動輔助自行車、電動代步車，還有零件與維修。跟供應商、跟老客人長年的關係，是我們能把對的車交到對的人手上的原因。</p>
+      </div>
+    </div>
+    <div class="lg:col-span-5 lg:mt-24" data-wipe="right"><div class="rounded-[16px] overflow-hidden aspect-[4/5]"><img src="https://www.lu-da.com.tw/wp-content/uploads/2024/10/綠大廣告板-03.jpg" alt="綠大電動車門市看板" class="w-full h-full object-cover"></div></div>
+  </div>
+  <div class="bg-white py-16">
+    <div class="max-w-site mx-auto px-5">
+      <h2 class="font-hand font-bold text-4xl" data-reveal>店裡在做的事</h2>
+      <ul class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 text-lg">
+        <li class="py-4 border-b-2 border-moss flex gap-3" data-reveal><i data-lucide="check" class="text-leaf shrink-0"></i>各式電動機車銷售</li>
+        <li class="py-4 border-b-2 border-moss flex gap-3" data-reveal><i data-lucide="check" class="text-leaf shrink-0"></i>電動代步車銷售</li>
+        <li class="py-4 border-b-2 border-moss flex gap-3" data-reveal><i data-lucide="check" class="text-leaf shrink-0"></i>電動車零件銷售</li>
+        <li class="py-4 border-b-2 border-moss flex gap-3" data-reveal><i data-lucide="check" class="text-leaf shrink-0"></i>電動車維修</li>
+      </ul>
+      <p class="mt-6 text-bark">更多項目，歡迎直接來店參觀。</p>
+    </div>
+  </div>
+  <div class="max-w-site mx-auto px-5 py-16">
+    <h2 class="font-hand font-bold text-4xl mb-8" data-reveal>店裡的車與看板</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="gallery">
+      <button class="press rounded-[12px] overflow-hidden aspect-square" data-lb="https://www.lu-da.com.tw/wp-content/uploads/2022/10/16s黑.jpg"><img src="https://www.lu-da.com.tw/wp-content/uploads/2022/10/16s黑.jpg" alt="16S親子車黑色" class="w-full h-full object-cover"></button>
+      <button class="press rounded-[12px] overflow-hidden aspect-square" data-lb="https://www.lu-da.com.tw/wp-content/uploads/2023/02/18s.jpg"><img src="https://www.lu-da.com.tw/wp-content/uploads/2023/02/18s.jpg" alt="18S親子車" class="w-full h-full object-cover"></button>
+      <button class="press rounded-[12px] overflow-hidden aspect-square" data-lb="https://www.lu-da.com.tw/wp-content/uploads/2025/07/VE米.jpg"><img src="https://www.lu-da.com.tw/wp-content/uploads/2025/07/VE米.jpg" alt="VE微型電動二輪車米色" class="w-full h-full object-cover"></button>
+      <button class="press rounded-[12px] overflow-hidden aspect-square" data-lb="https://www.lu-da.com.tw/wp-content/uploads/2022/10/未命名-1-01.jpg"><img src="https://www.lu-da.com.tw/wp-content/uploads/2022/10/未命名-1-01.jpg" alt="綠大電動車宣傳圖" class="w-full h-full object-cover"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section data-page="services">
+  <div class="max-w-site mx-auto px-5 pt-16 pb-8">
+    <h1 class="font-hand font-bold text-5xl sm:text-6xl leading-tight max-w-3xl" data-reveal>賣完車，才是我們開始忙的時候。</h1>
+    <p class="mt-5 text-lg max-w-[60ch] text-bark" data-reveal>以前藏在網站最下面的那兩行字——送車到府、貨車道路救援——其實是老客人最常回來找我們的原因。</p>
+  </div>
+  <div class="max-w-site mx-auto px-5 py-10 space-y-16">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div data-wipe><div class="rounded-[16px] overflow-hidden aspect-[4/3]"><img src="https://images.pexels.com/photos/18540320/pexels-photo-18540320.jpeg?auto=compress&cs=tinysrgb&w=1000" data-img="machinery" data-w="1000" alt="技師檢修電動車零件" loading="lazy" class="w-full h-full object-cover"></div></div>
+      <div data-reveal><h2 class="font-hand font-bold text-4xl">維修保養</h2><p class="mt-4 text-lg leading-8">電動機車、微型二輪車、電動輔助自行車、代步車都修。電池、充電器、煞車、輪胎，店裡有零件就當場處理，不用等。不是在本店買的車，也可以先牽來看看。</p><a href="#parts" class="lnk inline-flex items-center gap-1 mt-4 font-bold text-leaf">看電池與零配件價格<i data-lucide="arrow-right" class="w-4 h-4"></i></a></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div class="md:order-2" data-wipe="right"><div class="rounded-[16px] overflow-hidden aspect-[4/3]"><img src="https://images.pexels.com/photos/38812162/pexels-photo-38812162.jpeg?auto=compress&cs=tinysrgb&w=1000" data-img="logistics" data-w="1000" alt="貨車載運電動車送到客戶家" loading="lazy" class="w-full h-full object-cover"></div></div>
+      <div class="md:order-1" data-reveal><h2 class="font-hand font-bold text-4xl">一通電話，送車到府</h2><p class="mt-4 text-lg leading-8">台北、新北都送。長輩不方便來店、家裡沒人能騎回去，打 <a class="font-num font-bold lnk" href="tel:0222722860">02-2272-2860</a> 約時間，我們把車送到家門口，順便教怎麼充電、怎麼操作。</p></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div data-wipe><div class="rounded-[16px] overflow-hidden aspect-[4/3] relative bg-ink">
+        <img src="https://images.pexels.com/photos/6082416/pexels-photo-6082416.jpeg?auto=compress&cs=tinysrgb&w=1000" data-img="construction" data-w="1000" alt="道路救援貨車" loading="lazy" class="w-full h-full object-cover opacity-80">
+        <button data-open="videoM" class="press absolute inset-0 grid place-items-center" aria-label="播放救援收送影片"><span class="w-20 h-20 rounded-full bg-orange grid place-items-center"><i data-lucide="play" class="w-8 h-8 fill-ink"></i></span></button>
+      </div></div>
+      <div data-reveal><h2 class="font-hand font-bold text-4xl">貨車道路救援收送</h2><p class="mt-4 text-lg leading-8">半路沒電、爆胎、騎不動，不用硬推回家。即時派專業貨車過去，把車收回店裡修，修好再送回。</p><p class="mt-3 text-bark">救援範圍與費用依地點而定，請先來電。</p></div>
+    </div>
+  </div>
+  <div class="bg-white py-16 mt-6">
+    <div class="max-w-site mx-auto px-5">
+      <h2 class="font-hand font-bold text-4xl" data-reveal>店裡賣什麼、修什麼</h2>
+      <div class="mt-8 overflow-x-auto">
+        <table class="w-full min-w-[560px] text-left">
+          <thead class="border-b-2 border-ink"><tr><th class="py-3 pr-4">類別</th><th class="py-3 pr-4">銷售</th><th class="py-3 pr-4">維修</th><th class="py-3">適合誰</th></tr></thead>
+          <tbody class="divide-y-2 divide-moss">
+            <tr><td class="py-4 pr-4 font-bold">微型電動二輪車</td><td><i data-lucide="check" class="text-leaf"></i></td><td><i data-lucide="check" class="text-leaf"></i></td><td>沒駕照、短程通勤、買菜接送</td></tr>
+            <tr><td class="py-4 pr-4 font-bold">電動輔助自行車</td><td><i data-lucide="check" class="text-leaf"></i></td><td><i data-lucide="check" class="text-leaf"></i></td><td>接送小孩、想運動又怕上坡</td></tr>
+            <tr><td class="py-4 pr-4 font-bold">電動代步車／輪椅</td><td><i data-lucide="check" class="text-leaf"></i></td><td><i data-lucide="check" class="text-leaf"></i></td><td>長輩、行動不便者</td></tr>
+            <tr><td class="py-4 pr-4 font-bold">電動機車</td><td><i data-lucide="check" class="text-leaf"></i></td><td><i data-lucide="check" class="text-leaf"></i></td><td>有駕照、需要較長距離</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3"><a href="#contact" class="btn btn-o">預約維修／送車</a><a href="#faq" class="btn btn-g">常見問題</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section data-page="products">
+  <div class="max-w-site mx-auto px-5 pt-14">
+    <h1 class="font-hand font-bold text-5xl sm:text-6xl" data-reveal>免加油、沒噪音，車款都在這</h1>
+    <p class="mt-4 text-bark max-w-[60ch]">車子不在網路上賣，一定要來店試騎過再決定。滑過色點看顏色，勾兩台「比較」並排看規格。價格含稅，實際以門市為準。</p>
+    <div class="mt-8 flex flex-wrap items-center gap-2" id="cats"></div>
+    <div class="mt-5 flex flex-wrap gap-3 items-center justify-between">
+      <label class="relative flex-1 min-w-[220px] max-w-sm"><i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-bark"></i><input id="q" class="field pl-9" placeholder="搜尋車名，例如 VE、親子車"></label>
+      <label class="flex items-center gap-2 text-sm font-bold">排序<select id="sort" class="field w-auto py-2"><option value="d">預設</option><option value="v">最多人看</option><option value="pa">價格低到高</option><option value="pd">價格高到低</option><option value="s">只看特價</option></select></label>
+    </div>
+  </div>
+  <div class="max-w-site mx-auto px-5 py-10"><div id="shopGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"></div><p id="empty" class="hidden py-10 text-center text-bark">找不到符合的車款，換個關鍵字或打電話問我們。</p></div>
+  <div class="bg-white py-16">
+    <div class="max-w-site mx-auto px-5">
+      <h2 class="font-hand font-bold text-4xl" data-reveal>微型二輪車全部攤開看</h2>
+      <p class="mt-2 text-bark text-sm">續航與載重為示意值，實際依騎乘重量、路況與電池狀態而異，來店可試乘確認。</p>
+      <div class="mt-6 overflow-x-auto"><table class="w-full min-w-[720px] text-left">
+        <thead class="border-b-2 border-ink"><tr><th class="py-3">車款</th><th>價格</th><th>車型</th><th>續航（示意）</th><th>載重（示意）</th><th>適合誰</th></tr></thead>
+        <tbody class="divide-y-2 divide-moss" id="cmp"></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWS ================= -->
+<section data-page="news">
+  <div class="max-w-site mx-auto px-5 py-14">
+    <h1 class="font-hand font-bold text-5xl sm:text-6xl" data-reveal>最新消息</h1>
+    <div class="mt-10 space-y-12" id="newsList"></div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section data-page="faq">
+  <div class="max-w-site mx-auto px-5 py-14 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-4">
+      <h1 class="font-hand font-bold text-5xl leading-tight" data-reveal>電話裡最常被問的事</h1>
+      <p class="mt-4 text-bark">沒找到答案？直接打來，或 LINE 搜尋 <b class="font-num">luda4313</b>。</p>
+      <div class="mt-6 flex flex-wrap gap-3"><a href="tel:0222722860" class="btn btn-o font-num">02-2272-2860</a><a href="#license" class="btn btn-g">領牌與保險須知</a></div>
+    </div>
+    <div class="lg:col-span-8 divide-y-2 divide-moss border-y-2 border-moss" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section data-page="contact">
+  <div class="max-w-site mx-auto px-5 py-14 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-5">
+      <h1 class="font-hand font-bold text-5xl" data-reveal>來店、來電、傳 LINE 都行</h1>
+      <dl class="mt-8 space-y-5 text-lg">
+        <div class="flex gap-3"><i data-lucide="map-pin" class="text-leaf shrink-0 mt-1"></i><div><dt class="font-bold">板橋南雅店</dt><dd>新北市板橋區南雅西路二段5號1樓<br><span class="text-bark text-base">南雅夜市對面，彬彬幼稚園旁</span></dd></div></div>
+        <div class="flex gap-3"><i data-lucide="clock" class="text-leaf shrink-0 mt-1"></i><div><dt class="font-bold">營業時間</dt><dd>週二至週六 10:30–20:00<br><span class="text-bark text-base">週日、週一公休</span></dd></div></div>
+        <div class="flex gap-3"><i data-lucide="phone" class="text-leaf shrink-0 mt-1"></i><div><dt class="font-bold">電話</dt><dd><a href="tel:0222722860" class="font-num lnk">02-2272-2860</a></dd></div></div>
+        <div class="flex gap-3"><i data-lucide="message-circle" class="text-leaf shrink-0 mt-1"></i><div><dt class="font-bold">LINE</dt><dd class="font-num">luda4313</dd></div></div>
+      </dl>
+      <a href="https://www.google.com/maps/search/?api=1&query=新北市板橋區南雅西路二段5號" target="_blank" rel="noopener" class="btn btn-l mt-8"><i data-lucide="navigation" class="w-5 h-5"></i>開啟 Google 地圖</a>
+    </div>
+    <div class="lg:col-span-7">
+      <form id="cForm" class="bg-white rounded-[16px] p-6 sm:p-10 ruled" novalidate>
+        <h2 class="font-hand font-bold text-3xl">留個訊息，我們回電給你</h2>
+        <div class="grid sm:grid-cols-2 gap-4 mt-6">
+          <label class="block"><span class="font-bold text-sm">稱呼 <span class="text-orange">*</span></span><input required class="field mt-1" placeholder="例：王先生"></label>
+          <label class="block"><span class="font-bold text-sm">電話 <span class="text-orange">*</span></span><input required type="tel" class="field mt-1" placeholder="09xx-xxx-xxx"></label>
+          <label class="block sm:col-span-2"><span class="font-bold text-sm">想問什麼</span><select class="field mt-1"><option>預約試乘</option><option>車款價格</option><option>維修保養</option><option>送車到府</option><option>道路救援</option><option>領牌保險</option></select></label>
+          <label class="block sm:col-span-2"><span class="font-bold text-sm">內容</span><textarea id="cMsg" rows="4" class="field mt-1" placeholder="例：想幫媽媽找一台好上下車的代步車，週六下午方便試乘嗎？"></textarea></label>
+        </div>
+        <p class="text-sm text-bark mt-3"><span class="text-orange">*</span> 為必填</p>
+        <p id="cErr" class="hidden text-sm font-bold text-[#a3410a] mt-2">請填寫稱呼與電話。</p>
+        <button class="btn btn-o mt-5">送出訊息<i data-lucide="send" class="w-4 h-4"></i></button>
+        <div id="cOk" class="hidden mt-5 bg-moss rounded-[12px] p-4 flex gap-3"><i data-lucide="circle-check" class="text-leaf shrink-0"></i><p>收到了！營業時間內我們會回電。（此為 Demo，訊息未實際送出）</p></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARTS ================= -->
+<section data-page="parts">
+  <div class="max-w-site mx-auto px-5 py-14">
+    <h1 class="font-hand font-bold text-5xl sm:text-6xl" data-reveal>電池、充電器、零配件</h1>
+    <p class="mt-4 text-bark max-w-[60ch]">配件可以直接線上買，超商取貨或門市自取。電池換之前建議先牽來檢測，確認是電池還是充電器的問題，不會讓你白花錢。</p>
+    <div class="mt-10 grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="partGrid"></div>
+    <div class="mt-14 grid md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-[16px] p-7" data-reveal><i data-lucide="plug" class="text-leaf w-8 h-8"></i><h2 class="font-hand font-bold text-3xl mt-3">充電器</h2><p class="mt-2 text-bark">各廠牌規格不同，請帶原充電器或告知車款，門市幫你對規格。</p><a href="#contact" class="lnk font-bold text-leaf inline-block mt-3">詢問充電器</a></div>
+      <div class="bg-white rounded-[16px] p-7" data-reveal><i data-lucide="wrench" class="text-leaf w-8 h-8"></i><h2 class="font-hand font-bold text-3xl mt-3">安裝服務</h2><p class="mt-2 text-bark">線上買的尾箱、籃子、後照鏡，帶來店裡可以幫忙裝。</p><a href="#services" class="lnk font-bold text-leaf inline-block mt-3">看維修服務</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LICENSE ================= -->
+<section data-page="license">
+  <div class="max-w-site mx-auto px-5 py-14">
+    <h1 class="font-hand font-bold text-5xl sm:text-6xl leading-tight max-w-3xl" data-reveal>微型電動二輪車：<br>免駕照，但要掛牌、要保險。</h1>
+    <div class="mt-8 plate p-5 sm:p-7 max-w-3xl bg-white" data-reveal>
+      <p class="text-lg leading-8">自 2022 年 11 月 30 日起，微型電動二輪車須<b>掛牌</b>才能上路，並須投保<b>強制險</b>；未依規定違規最高可罰 <b class="font-num">3,600</b> 元。騎乘者<b>不需要駕照</b>。</p>
+    </div>
+    <h2 class="font-hand font-bold text-4xl mt-16" data-reveal>領牌四個步驟</h2>
+    <ol class="mt-8 grid md:grid-cols-4 gap-4" id="steps">
+      <li class="bg-white rounded-[16px] p-6" data-reveal><span class="font-num font-bold text-3xl text-leaf">1</span><h3 class="font-bold text-xl mt-2">購車取得文件</h3><p class="text-bark mt-2">買車時會拿到車輛相關證明，請收好。</p></li>
+      <li class="bg-white rounded-[16px] p-6" data-reveal><span class="font-num font-bold text-3xl text-leaf">2</span><h3 class="font-bold text-xl mt-2">投保強制險</h3><p class="text-bark mt-2">掛牌前須先投保強制汽機車責任險。</p></li>
+      <li class="bg-white rounded-[16px] p-6" data-reveal><span class="font-num font-bold text-3xl text-leaf">3</span><h3 class="font-bold text-xl mt-2">監理站登記</h3><p class="text-bark mt-2">帶身分證明與車輛文件，到監理站辦理登記領牌。</p></li>
+      <li class="bg-lime rounded-[16px] p-6" data-reveal><span class="font-num font-bold text-3xl">4</span><h3 class="font-bold text-xl mt-2">掛牌上路</h3><p class="mt-2">牌照掛好、戴安全帽，就能安心騎。</p></li>
+    </ol>
+    <div class="mt-12 grid md:grid-cols-2 gap-8 items-start">
+      <button class="press rounded-[16px] overflow-hidden bg-white" data-lb="https://www.lu-da.com.tw/wp-content/uploads/2023/03/領牌流程-01.jpg" data-reveal><img src="https://www.lu-da.com.tw/wp-content/uploads/2023/03/領牌流程-01.jpg" alt="監理站微型電動二輪車掛牌流程圖" class="w-full"></button>
+      <div data-reveal>
+        <h2 class="font-hand font-bold text-3xl">保險：強制險一定要，第三責任險建議加</h2>
+        <p class="mt-4 leading-8">強制險只保最基本的傷害。萬一碰撞到人或車，賠償可能超過強制險額度，加保第三人責任險比較安心。各家保額與費用不同，購車時可以先問我們怎麼選。</p>
+        <p class="mt-3 text-sm text-bark">實際文件與規定以監理單位最新公告為準。</p>
+        <a href="#news" class="btn btn-g mt-6">看相關新聞</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHARGE ================= -->
+<section data-page="charge">
+  <div class="max-w-site mx-auto px-5 py-14 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-5">
+      <h1 class="font-hand font-bold text-5xl leading-tight" data-reveal>大部分時候，<br>家裡插座就夠了。</h1>
+      <p class="mt-5 text-lg leading-8" data-reveal>微型二輪車與電動輔助自行車多半能拆電池、用家用插座充電。外出前充飽，市區代步通常一天用不完。真的要跑遠，再查沿途充電點。</p>
+      <ul class="mt-6 space-y-3" data-reveal>
+        <li class="flex gap-3"><i data-lucide="battery-charging" class="text-leaf shrink-0"></i>騎完等電池稍微降溫再充</li>
+        <li class="flex gap-3"><i data-lucide="sun" class="text-leaf shrink-0"></i>避免放在烈日下或潮濕處充電</li>
+        <li class="flex gap-3"><i data-lucide="plug" class="text-leaf shrink-0"></i>使用原廠或對應規格的充電器</li>
+      </ul>
+    </div>
+    <div class="lg:col-span-7">
+      <div class="flex flex-wrap gap-2" id="regions"></div>
+      <ul class="mt-5 divide-y-2 divide-moss border-y-2 border-moss" id="stations"></ul>
+      <p class="mt-3 text-sm text-bark">以上站點為示意資料，正式上線時由門市更新；出發前建議先電話確認。</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="bg-ink text-cream/90 pt-16 pb-6">
+  <div class="max-w-site mx-auto px-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div><p class="font-hand text-3xl font-bold text-lime">綠大電動車</p><p class="mt-3 text-cream/75">板橋南雅西路上的電動車老店。可刷卡、可試乘。</p></div>
+    <div><p class="font-bold text-cream">營業項目</p><ul class="mt-3 space-y-1.5 text-cream/75"><li>電動機車銷售維修</li><li>微型電動二輪車銷售維修</li><li>電動輔助自行車銷售維修</li><li>電動代步車銷售維修</li></ul></div>
+    <div><p class="font-bold text-cream">板橋南雅店</p><p class="mt-3 text-cream/75 leading-7">新北市板橋區南雅西路二段5號1樓<br>週二至週六 10:30–20:00<br>週日、一公休<br>LINE：luda4313</p></div>
+    <div><p class="font-bold text-cream">需要幫忙？</p><a href="tel:0222722860" class="block font-num text-3xl font-bold text-lime mt-2 lnk">02-2272-2860</a><p class="mt-3 text-cream/75">一通電話台北新北送車到府<br>即時專業貨車道路救援收送</p></div>
+  </div>
+  <div class="max-w-site mx-auto px-5 mt-12 pt-5 border-t border-cream/20 flex flex-wrap justify-between gap-2 text-sm text-cream/65"><p>© <span id="yr"></span> 綠大國際有限公司</p><p>design by Morcept</p></div>
+</footer>
+
+<!-- Compare bar -->
+<div id="cmpBar" class="fixed bottom-5 left-1/2 z-[65] bg-ink text-cream rounded-full pl-5 pr-2 py-2 flex items-center gap-3 shadow-[0_14px_34px_-14px_rgba(35,24,21,.6)] max-w-[94vw]">
+  <i data-lucide="git-compare" class="w-5 h-5 text-lime shrink-0"></i><p id="cmpTxt" class="text-sm font-bold truncate"></p>
+  <button id="cmpClear" class="icon-b shrink-0 text-cream hover:text-ink" aria-label="清除比較"><i data-lucide="x" class="w-4 h-4"></i></button>
+  <button id="cmpGo" class="btn btn-o py-2 shrink-0">比較</button>
+</div>
+
+<!-- Cart drawer -->
+<div id="veil" class="fixed inset-0 bg-ink/50 z-[70]"></div>
+<aside id="drawer" class="fixed right-0 top-0 h-full w-full max-w-md bg-cream z-[75] flex flex-col" aria-label="配件購物車">
+  <div class="flex items-center justify-between p-5 border-b-2 border-moss"><h2 class="font-hand font-bold text-2xl">配件購物車</h2><button class="icon-b" id="cartClose" aria-label="關閉購物車"><i data-lucide="x"></i></button></div>
+  <ul id="cartList" class="flex-1 overflow-auto p-5 space-y-4"></ul>
+  <div class="p-5 border-t-2 border-moss space-y-3">
+    <div class="flex gap-2"><input id="coupon" class="field py-2" placeholder="優惠碼（試試 DEMO100）"><button id="cpBtn" class="btn btn-l py-2 shrink-0">套用</button></div>
+    <p id="cpMsg" class="text-sm text-leaf font-bold hidden"></p>
+    <dl class="tnum space-y-1"><div class="flex justify-between"><dt>小計</dt><dd id="sub">$0</dd></div><div class="flex justify-between text-leaf"><dt>折扣</dt><dd id="disc">-$0</dd></div><div class="flex justify-between font-bold text-xl pt-1"><dt>合計</dt><dd id="tot" class="font-num">$0</dd></div></dl>
+    <button id="toCheckout" class="btn btn-o w-full justify-center">前往結帳</button>
+  </div>
+</aside>
+
+<div class="modal" id="prodM" role="dialog" aria-modal="true"><div class="panel max-w-4xl p-5 sm:p-8 relative">
+  <button class="icon-b absolute right-3 top-3" data-close aria-label="關閉"><i data-lucide="x"></i></button>
+  <div class="grid md:grid-cols-2 gap-8" id="prodBody"></div>
+</div></div>
+
+<div class="modal" id="cmpM" role="dialog" aria-modal="true"><div class="panel max-w-4xl p-5 sm:p-8 relative">
+  <button class="icon-b absolute right-3 top-3" data-close aria-label="關閉"><i data-lucide="x"></i></button>
+  <h2 class="font-hand font-bold text-3xl">兩台並排比</h2>
+  <div id="cmpBody" class="mt-6 overflow-x-auto"></div>
+  <p class="text-sm text-bark mt-4">續航、載重為示意值；實際騎起來差在哪，來店兩台都試最準。</p>
+  <div class="mt-5 flex flex-wrap gap-3"><a href="#contact" class="btn btn-o" data-close data-trial>預約兩台一起試乘</a></div>
+</div></div>
+
+<div class="modal" id="checkM" role="dialog" aria-modal="true"><div class="panel max-w-3xl p-5 sm:p-8 relative">
+  <button class="icon-b absolute right-3 top-3" data-close aria-label="關閉"><i data-lucide="x"></i></button>
+  <h2 class="font-hand font-bold text-3xl">結帳</h2>
+  <form id="coForm" class="grid md:grid-cols-5 gap-6 mt-5" novalidate>
+    <div class="md:col-span-3 space-y-4">
+      <div class="grid sm:grid-cols-2 gap-3"><input required class="field" placeholder="收件人姓名 *"><input required type="tel" class="field" placeholder="手機 *"><input required class="field sm:col-span-2" placeholder="收件地址或取貨門市 *"></div>
+      <fieldset><legend class="font-bold mb-2">付款方式</legend><div class="flex flex-wrap gap-2">
+        <label class="chip cursor-pointer"><input type="radio" name="pay" checked class="accent-[#4a6612] mr-1">信用卡</label><label class="chip cursor-pointer"><input type="radio" name="pay" class="accent-[#4a6612] mr-1">ATM 轉帳</label><label class="chip cursor-pointer"><input type="radio" name="pay" class="accent-[#4a6612] mr-1">超商付款</label></div></fieldset>
+      <fieldset><legend class="font-bold mb-2">取貨方式</legend><div class="flex flex-wrap gap-2">
+        <label class="chip cursor-pointer"><input type="radio" name="ship" checked class="accent-[#4a6612] mr-1">宅配</label><label class="chip cursor-pointer"><input type="radio" name="ship" class="accent-[#4a6612] mr-1">超商取貨</label><label class="chip cursor-pointer"><input type="radio" name="ship" class="accent-[#4a6612] mr-1">門市自取（可代裝）</label></div></fieldset>
+      <p id="coErr" class="hidden text-sm font-bold text-[#a3410a]">請填寫姓名、手機與地址。</p>
+    </div>
+    <div class="md:col-span-2 bg-white rounded-[12px] p-5"><p class="font-bold">訂單摘要</p><ul id="coSum" class="mt-3 space-y-2 text-sm tnum"></ul><p class="flex justify-between font-bold text-lg mt-4 pt-3 border-t-2 border-moss"><span>合計</span><span id="coTot" class="font-num"></span></p><button class="btn btn-o w-full justify-center mt-4">送出訂單</button></div>
+  </form>
+  <div id="coOk" class="hidden mt-6 bg-moss rounded-[12px] p-5 flex gap-3"><i data-lucide="circle-check" class="text-leaf shrink-0"></i><p><b>此為 Demo，訂單未實際送出。</b>正式網站會寄送訂單確認信，出貨後再通知。</p></div>
+</div></div>
+
+<div class="modal" id="loginM" role="dialog" aria-modal="true"><div class="panel max-w-md p-6 sm:p-8 relative">
+  <button class="icon-b absolute right-3 top-3" data-close aria-label="關閉"><i data-lucide="x"></i></button>
+  <div class="flex gap-2 mb-5"><button class="chip on" data-tab="in">會員登入</button><button class="chip" data-tab="up">註冊</button></div>
+  <form id="lgForm" class="space-y-3" novalidate>
+    <input required type="email" class="field" placeholder="Email *"><input required type="password" class="field" placeholder="密碼 *"><input type="tel" class="field hidden" id="regPhone" placeholder="手機（註冊用）">
+    <button class="btn btn-l w-full justify-center" id="lgBtn">登入</button>
+    <p id="lgOk" class="hidden text-leaf font-bold text-sm">Demo 模式：已模擬完成，未建立真實帳號。</p>
+  </form>
+</div></div>
+
+<div class="modal" id="searchM" role="dialog" aria-modal="true"><div class="panel max-w-lg p-6 relative">
+  <button class="icon-b absolute right-3 top-3" data-close aria-label="關閉"><i data-lucide="x"></i></button>
+  <form id="sForm" class="mt-6 flex gap-2"><input id="sq" class="field" placeholder="搜尋車款…"><button class="btn btn-o shrink-0">搜尋</button></form>
+</div></div>
+
+<div class="modal" id="videoM" role="dialog" aria-modal="true"><div class="panel max-w-3xl p-3 relative bg-ink">
+  <button class="icon-b absolute right-3 top-3 text-cream z-10" data-close aria-label="關閉"><i data-lucide="x"></i></button>
+  <div class="aspect-video rounded-[12px] bg-[#3a2c27] grid place-items-center text-center text-cream p-6"><div><i data-lucide="clapperboard" class="w-12 h-12 mx-auto text-lime"></i><p class="font-hand text-2xl mt-3">救援收送實拍影片</p><p class="text-cream/75 mt-1">正式上線時嵌入門市 YouTube 影片</p></div></div>
+</div></div>
+
+<div class="modal" id="lbM" role="dialog" aria-modal="true"><div class="relative max-w-4xl w-full">
+  <button class="icon-b absolute -top-12 right-0 bg-cream" data-close aria-label="關閉"><i data-lucide="x"></i></button>
+  <img id="lbImg" alt="放大圖片" class="w-full max-h-[85vh] object-contain rounded-[12px]">
+</div></div>
+
+<div id="cookie" class="fixed bottom-4 left-4 right-4 sm:right-auto sm:max-w-sm z-[60] bg-white rounded-[14px] p-4 shadow-[0_14px_34px_-14px_rgba(35,24,21,.45)] text-sm">
+  <p>本站使用 Cookie 記住購物車與瀏覽偏好。</p><div class="mt-3 flex gap-2"><button class="btn btn-l py-2" data-ck>同意</button><button class="btn btn-g py-2" data-ck>只用必要的</button></div>
+</div>
+<div id="toast" class="fixed bottom-6 left-1/2 z-[90] bg-ink text-cream rounded-full px-5 py-3 font-bold"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+<script>
+const U='https://www.lu-da.com.tw/wp-content/uploads/';
+/* 顏色：[名稱, 色碼] — 滑過色點即套色預覽（正式上線換成各色實拍圖） */
+const CW=[['珍珠白','#f4f2ec'],['消光黑','#2b2b2b'],['奶茶米','#d9c3a0']],CK=[['薄荷綠','#9fd3b8'],['天空藍','#9cc3e6'],['珍珠白','#f4f2ec']],CS=[['酒紅','#8c2f3a'],['銀灰','#b8bcc0']];
+const P=[
+ {id:'16s',n:'16S親子車',c:'bike',p:25800,img:U+'2022/10/16s黑.jpg',t:'可載童',r:'約 40 km',l:'約 100 kg',w:'接送小學以下孩子',v:1286,cl:CW},
+ {id:'18s',n:'18S親子車',c:'bike',p:26800,img:U+'2023/02/18s.jpg',t:'可載童',r:'約 45 km',l:'約 100 kg',w:'個子較高的家長',v:842,cl:CW},
+ {id:'fish',n:'小魚',c:'bike',p:26800,o:32800,img:U+'2026/04/小魚4.jpg',t:'單人款',r:'約 35 km',l:'約 90 kg',w:'通勤、買菜',v:967,cl:CK},
+ {id:'momo',n:'MomoRex 霸萌',c:'micro',p:44800,img:U+'2026/01/5.jpg',t:'中型款',r:'約 45 km',l:'約 100 kg',w:'通勤族、想要造型',v:1104,cl:CK},
+ {id:'q188',n:'Qunnie188（贈尾箱）',c:'micro',p:43800,img:U+'2026/07/188L_w45l-1.jpg',t:'中型款',r:'約 45 km',l:'約 100 kg',w:'需要置物空間',v:731,cl:CW},
+ {id:'ve',n:'VE',c:'micro',p:40800,o:43800,img:U+'2025/07/VE米.jpg',t:'輕小款（小隻女首選）',r:'約 40 km',l:'約 90 kg',w:'身高較嬌小、第一次騎',v:1532,cl:CW},
+ {id:'cool',n:'極酷（贈尾箱）',c:'micro',p:32800,o:35800,t:'輕小款（小隻女首選）',r:'約 35 km',l:'約 90 kg',w:'預算有限的入門款',v:688,cl:CK},
+ {id:'s9',n:'S9（緩啟動不爆衝）',c:'micro',p:42800,o:45800,t:'中型款',r:'約 45 km',l:'約 100 kg',w:'長輩、怕暴衝的人',v:1215,cl:CW},
+ {id:'v6',n:'V6 大偉士 不爆衝',c:'micro',p:45800,t:'大型款',r:'約 50 km',l:'約 120 kg',w:'體型較大、載物多',v:576,cl:CW},
+ {id:'sl7',n:'必翔 SL7-4',c:'scooter',p:29800,t:'必翔',r:'—',l:'—',w:'長輩近距離代步',v:493,cl:CS},
+ {id:'hs328',n:'HS-328 中型四輪代步車',c:'scooter',p:36000,t:'建迪',r:'—',l:'—',w:'長輩日常外出',v:412,cl:CS},
+ {id:'k646',n:'康揚 646.2 標準型',c:'scooter',p:51000,t:'康揚',r:'—',l:'—',w:'行動不便者',v:358,cl:CS}
+];
+const PARTS=[
+ {id:'b1',n:'弘傳鋰電池 48V20AH',c:'part',p:15800,t:'電池'},
+ {id:'b2',n:'三順鋰電池 48V18AH',c:'part',p:16800,t:'電池'},
+ {id:'b3',n:'新訊鋰電池 48V20AH',c:'part',p:0,t:'電池'},
+ {id:'a1',n:'後置尾箱 30L',c:'part',p:1280,t:'置物',cl:[['消光黑','#2b2b2b'],['珍珠白','#f4f2ec'],['奶茶米','#d9c3a0']]},
+ {id:'a2',n:'前置物籃',c:'part',p:480,t:'置物',cl:[['消光黑','#2b2b2b'],['薄荷綠','#9fd3b8']]},
+ {id:'a3',n:'3/4 安全帽',c:'part',p:1180,t:'安全',cl:[['珍珠白','#f4f2ec'],['天空藍','#9cc3e6'],['酒紅','#8c2f3a']]}
+];
+const CATS={all:'全部',micro:'微型電動二輪車（免駕照）',bike:'電動腳踏車',scooter:'電動代步車／輪椅'};
+const ALL=[...P,...PARTS];const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const money=n=>'$'+n.toLocaleString('zh-TW');
+const isCar=x=>x.c!=='part';
+const visual=x=>`<div class="pimg w-full h-full">${x.img?`<img src="${x.img}" alt="${x.n}" loading="lazy" class="w-full h-full object-cover">`:`<div class="w-full h-full grid place-items-center bg-moss p-4 text-center"><div class="plate px-4 py-3"><p class="font-num font-extrabold text-2xl sm:text-3xl tracking-tight">${x.n.split(/[（ ]/)[0]}</p><p class="text-xs text-bark mt-1">${isCar(x)?'實車照請來店看':x.t}</p></div></div>`}<span class="tint"></span></div>`;
+const swatches=x=>x.cl?`<div class="flex items-center gap-2 mt-3" data-sws="${x.id}">${x.cl.map(([n,h],i)=>`<button type="button" class="sw ${i?'':'on'}" style="background:${h}" data-sw="${i}" aria-label="${n}" title="${n}"></button>`).join('')}<span class="text-xs text-bark ml-1" data-swn>${x.cl[0][0]}</span></div>`:'';
+const views=x=>`<span class="inline-flex items-center gap-1 text-xs text-bark font-num tnum"><i data-lucide="eye" class="w-3.5 h-3.5"></i><span data-views="${x.id}">${x.v.toLocaleString('zh-TW')}</span> 次瀏覽</span>`;
+function card(x){const car=isCar(x);return `<article class="pcard flex flex-col" data-card="${x.id}"><button class="press text-left flex flex-col" data-prod="${x.id}"><div class="aspect-square overflow-hidden relative">${visual(x)}${x.o?'<span class="tag bg-orange absolute top-3 left-3">特價</span>':''}</div></button><div class="px-4 pt-4 flex-1"><div class="flex justify-between gap-2 items-center"><p class="text-xs text-leaf font-bold">${x.t}</p>${car?views(x):''}</div><h3 class="font-bold text-lg leading-snug mt-1"><button class="press text-left lnk" data-prod="${x.id}">${x.n}</button></h3><p class="mt-2 font-num font-bold text-xl tnum">${x.p?money(x.p):'來店洽詢'}${x.o?` <s class="text-bark text-sm font-normal">${money(x.o)}</s>`:''}</p>${swatches(x)}</div>${car?`<div class="m-4 flex gap-2"><button class="press btn btn-l justify-center py-2 text-sm flex-1" data-prod="${x.id}">看介紹</button><button class="press chip cmpb text-sm flex items-center gap-1 ${cmpSel.includes(x.id)?'on':''}" data-cmp="${x.id}" aria-label="加入比較"><i data-lucide="git-compare" class="w-4 h-4"></i>比較</button></div>`:x.p?`<button class="press m-4 btn btn-l justify-center py-2 text-sm" data-add="${x.id}"><i data-lucide="shopping-bag" class="w-4 h-4"></i>加入購物車</button>`:`<a href="#contact" class="m-4 btn btn-g justify-center py-2 text-sm">詢價</a>`}</article>`}
+
+/* Color hover */
+const lum=h=>{const n=parseInt(h.slice(1),16);return((n>>16)*.299+((n>>8)&255)*.587+(n&255)*.114)/255};
+function applyColor(box,x,i){const [n,h]=x.cl[i];box.querySelectorAll('[data-sws="'+x.id+'"] .sw').forEach((s,k)=>s.classList.toggle('on',k===i));box.querySelectorAll('[data-sws="'+x.id+'"] [data-swn]').forEach(s=>s.textContent=n);
+ const pi=box.querySelector('.pimg');if(!pi)return;const t=pi.querySelector('.tint'),plate=pi.querySelector('.plate'),img=pi.querySelector('img');
+ if(img){t.style.background=h;t.style.opacity=i?(lum(h)<.4?.55:.4):0;img.style.filter=i&&lum(h)<.4?'saturate(.4)':''}
+ else{pi.firstElementChild.style.background=h;if(plate)plate.style.background=lum(h)<.4?'#f5f8ec':'#fff'}}
+document.addEventListener('mouseover',e=>{const s=e.target.closest('[data-sw]');if(!s)return;const w=s.closest('[data-sws]'),x=ALL.find(p=>p.id===w.dataset.sws);applyColor(w.closest('[data-card],#prodBody'),x,+s.dataset.sw)});
+
+/* Views */
+const seen={};
+function bump(id){const x=P.find(p=>p.id===id);if(!x)return;x.v++;$$(`[data-views="${id}"]`).forEach(s=>s.textContent=x.v.toLocaleString('zh-TW'))}
+
+/* Compare */
+let cmpSel=[];
+function toggleCmp(id){if(cmpSel.includes(id))cmpSel=cmpSel.filter(i=>i!==id);else{if(cmpSel.length>=2){cmpSel.shift();toast('只能比兩台，已換掉最早選的')}cmpSel.push(id)}renderCmpBar()}
+function renderCmpBar(){$$('[data-cmp]').forEach(b=>b.classList.toggle('on',cmpSel.includes(b.dataset.cmp)));const names=cmpSel.map(i=>P.find(p=>p.id===i).n.split('（')[0]);$('#cmpTxt').textContent=cmpSel.length===2?names.join(' vs '):names[0]?`${names[0]}，再選一台`:'';$('#cmpBar').classList.toggle('on',cmpSel.length>0);$('#cmpGo').disabled=cmpSel.length<2;$('#cmpGo').style.opacity=cmpSel.length<2?.5:1}
+function openCmp(){const [a,b]=cmpSel.map(i=>P.find(p=>p.id===i));const rows=[['價格',x=>`<span class="font-num font-bold">${money(x.p)}</span>`],['車型',x=>x.t],['續航（示意）',x=>x.r],['載重（示意）',x=>x.l],['顏色',x=>x.cl.map(c=>c[0]).join('、')],['適合誰',x=>x.w],['瀏覽次數',x=>`<span class="font-num tnum">${x.v.toLocaleString('zh-TW')}</span>`]];
+ $('#cmpBody').innerHTML=`<table class="w-full min-w-[520px] text-left"><thead><tr><th class="w-28"></th>${[a,b].map(x=>`<th class="p-2 align-bottom"><div class="aspect-[4/3] rounded-[12px] overflow-hidden">${visual(x)}</div><p class="font-hand text-xl mt-2">${x.n}</p></th>`).join('')}</tr></thead><tbody class="divide-y-2 divide-moss">${rows.map(([k,f])=>`<tr><th class="py-3 pr-2 text-sm text-bark font-bold">${k}</th><td class="p-2">${f(a)}</td><td class="p-2">${f(b)}</td></tr>`).join('')}</tbody></table>`;openM('cmpM')}
+$('#cmpGo').onclick=()=>cmpSel.length===2&&openCmp();$('#cmpClear').onclick=()=>{cmpSel=[];renderCmpBar()};
+
+/* Shop */
+let cat='all';
+function renderShop(){const q=$('#q').value.trim().toLowerCase(),s=$('#sort').value;let l=P.filter(x=>(cat==='all'||x.c===cat)&&x.n.toLowerCase().includes(q));if(s==='s')l=l.filter(x=>x.o);if(s==='pa')l.sort((a,b)=>a.p-b.p);if(s==='pd')l.sort((a,b)=>b.p-a.p);if(s==='v')l.sort((a,b)=>b.v-a.v);$('#shopGrid').innerHTML=l.map(card).join('');$('#empty').classList.toggle('hidden',!!l.length);lucide.createIcons();if(window.gsap&&!reduce)gsap.from('#shopGrid .pcard',{opacity:0,y:16,stagger:.05,duration:.45,ease:'power3.out'})}
+$('#cats').innerHTML=Object.entries(CATS).map(([k,v])=>`<button class="chip press ${k==='all'?'on':''}" data-cat="${k}">${v} <span class="font-num text-sm opacity-70">${k==='all'?P.length:P.filter(x=>x.c===k).length}</span></button>`).join('');
+$('#cats').onclick=e=>{const b=e.target.closest('[data-cat]');if(!b)return;cat=b.dataset.cat;$$('[data-cat]').forEach(x=>x.classList.toggle('on',x===b));renderShop()};
+$('#q').oninput=renderShop;$('#sort').onchange=renderShop;
+$('#hotGrid').innerHTML=P.slice(0,6).map(card).join('');
+$('#partGrid').innerHTML=PARTS.map(card).join('');
+$('#cmp').innerHTML=P.filter(x=>x.c==='micro').map(x=>`<tr><td class="py-3 pr-3 font-bold">${x.n}</td><td class="pr-3 font-num">${money(x.p)}</td><td class="pr-3">${x.t}</td><td class="pr-3">${x.r}</td><td class="pr-3">${x.l}</td><td>${x.w}</td></tr>`).join('');
+
+/* Product modal */
+function openProd(id){const x=ALL.find(p=>p.id===id),car=isCar(x);if(car){bump(id)}const imgs=x.img?[x.img,U+'2022/08/banner.jpg']:[];
+$('#prodBody').innerHTML=`<div><div class="aspect-square rounded-[12px] overflow-hidden bg-moss" id="pMain">${visual(x)}</div>${imgs.length?`<div class="flex gap-2 mt-3">${imgs.map(s=>`<button class="press w-20 h-20 rounded-[10px] overflow-hidden" data-th="${s}"><img src="${s}" alt="${x.n} 圖片" class="w-full h-full object-cover"></button>`).join('')}</div>`:''}</div>
+<div><div class="flex gap-3 items-center"><p class="text-sm text-leaf font-bold">${x.t}</p>${car?views(x):''}</div><h2 class="font-hand font-bold text-3xl sm:text-4xl mt-1">${x.n}</h2><p class="font-num font-bold text-3xl mt-3 tnum">${x.p?money(x.p):'來店洽詢'}${x.o?` <s class="text-bark text-lg font-normal">${money(x.o)}</s>`:''}</p>
+${car&&x.r!=='—'?`<dl class="mt-5 grid grid-cols-2 gap-3 text-sm"><div class="bg-white rounded-[10px] p-3"><dt class="text-bark">續航（示意）</dt><dd class="font-bold">${x.r}</dd></div><div class="bg-white rounded-[10px] p-3"><dt class="text-bark">載重（示意）</dt><dd class="font-bold">${x.l}</dd></div><div class="bg-white rounded-[10px] p-3 col-span-2"><dt class="text-bark">適合</dt><dd class="font-bold">${x.w}</dd></div></dl>`:car?`<p class="mt-5 bg-white rounded-[10px] p-3 text-sm"><span class="text-bark">適合</span>　<b>${x.w}</b></p>`:''}
+${x.cl?`<p class="font-bold mt-5">顏色 <span class="text-sm text-bark font-normal">（滑過色點預覽）</span></p>${swatches(x)}`:''}
+${car?`<div class="flex flex-wrap gap-3 mt-6"><a href="#contact" class="btn btn-o" data-close data-trial="${x.n}">預約試乘</a><button class="btn btn-g" data-cmp="${x.id}"><i data-lucide="git-compare" class="w-4 h-4"></i>加入比較</button></div><p class="text-sm text-bark mt-4">車款採門市銷售：可刷卡・台北新北送車到府・微型二輪車須掛牌與保強制險</p>`
+:`<div class="flex items-center gap-3 mt-5"><p class="font-bold">數量</p><div class="flex items-center bg-white rounded-full"><button class="icon-b" id="qm" aria-label="減少"><i data-lucide="minus" class="w-4 h-4"></i></button><span id="qv" class="w-8 text-center font-num font-bold">1</span><button class="icon-b" id="qp" aria-label="增加"><i data-lucide="plus" class="w-4 h-4"></i></button></div></div>
+<div class="flex flex-wrap gap-3 mt-6">${x.p?`<button class="btn btn-o" id="pAdd">加入購物車</button>`:''}<a href="#contact" class="btn btn-g" data-close>詢問規格</a></div><p class="text-sm text-bark mt-4">宅配・超商取貨・門市自取可代裝</p>`}</div>`;
+let qn=1;if(!car){$('#qm').onclick=()=>{qn=Math.max(1,qn-1);$('#qv').textContent=qn};$('#qp').onclick=()=>{qn++;$('#qv').textContent=qn}}
+$$('[data-th]').forEach(b=>b.onclick=()=>$('#pMain').innerHTML=visual({...x,img:b.dataset.th}));
+$('#pAdd')&&($('#pAdd').onclick=()=>{const sw=$('#prodBody .sw.on');add(x.id,qn,x.cl&&sw?x.cl[+sw.dataset.sw][0]:'');closeM();openCart()});openM('prodM');lucide.createIcons()}
+
+/* Cart（配件限定） */
+const cart={};let coupon=0;
+function add(id,n=1,color=''){const k=id+(color?'|'+color:'');cart[k]=(cart[k]||0)+n;renderCart();toast('已加入購物車')}
+const item=k=>{const [id,c]=k.split('|');return{x:ALL.find(p=>p.id===id),c}};
+function totals(){const s=Object.entries(cart).reduce((a,[k,q])=>a+item(k).x.p*q,0);const d=s?Math.min(coupon,s):0;return{s,d,t:s-d}}
+function renderCart(){const ks=Object.keys(cart);$('#cartCount').textContent=ks.reduce((a,i)=>a+cart[i],0);
+$('#cartList').innerHTML=ks.length?ks.map(k=>{const {x,c}=item(k);return `<li class="flex gap-3 items-center"><div class="w-16 h-16 rounded-[10px] overflow-hidden shrink-0">${visual(x)}</div><div class="flex-1"><p class="font-bold leading-snug">${x.n}</p>${c?`<p class="text-xs text-bark">${c}</p>`:''}<p class="text-sm font-num">${money(x.p)} × ${cart[k]}</p></div><div class="flex"><button class="icon-b" data-dec="${k}" aria-label="減少"><i data-lucide="minus" class="w-4 h-4"></i></button><button class="icon-b" data-inc="${k}" aria-label="增加"><i data-lucide="plus" class="w-4 h-4"></i></button><button class="icon-b" data-rm="${k}" aria-label="移除"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></li>`}).join(''):'<li class="text-bark text-center py-10">購物車是空的。<br>車款請來店試乘，這裡只賣配件。<br><a href="#parts" class="lnk text-leaf font-bold" data-cc>去看配件</a></li>';
+const t=totals();$('#sub').textContent=money(t.s);$('#disc').textContent='-'+money(t.d);$('#tot').textContent=money(t.t);lucide.createIcons()}
+$('#cartList').onclick=e=>{const b=e.target.closest('button,[data-cc]');if(!b)return;if(b.dataset.cc!==undefined)return closeCart();const id=b.dataset.inc||b.dataset.dec||b.dataset.rm;if(b.dataset.inc)cart[id]++;if(b.dataset.dec&&--cart[id]<1)delete cart[id];if(b.dataset.rm)delete cart[id];renderCart()};
+$('#cpBtn').onclick=()=>{const ok=$('#coupon').value.trim().toUpperCase()==='DEMO100';coupon=ok?100:0;const m=$('#cpMsg');m.classList.remove('hidden');m.textContent=ok?'已套用 DEMO100，折抵 $100':'優惠碼無效，Demo 請輸入 DEMO100';m.style.color=ok?'#4a6612':'#a3410a';renderCart()};
+function openCart(){$('#drawer').classList.add('on');$('#veil').classList.add('on')}
+function closeCart(){$('#drawer').classList.remove('on');$('#veil').classList.remove('on')}
+$('#cartBtn').onclick=openCart;$('#cartClose').onclick=closeCart;$('#veil').onclick=closeCart;
+$('#toCheckout').onclick=()=>{if(!Object.keys(cart).length)return toast('購物車還是空的');closeCart();
+$('#coSum').innerHTML=Object.entries(cart).map(([k,q])=>{const {x,c}=item(k);return `<li class="flex justify-between gap-2"><span>${x.n}${c?'（'+c+'）':''} ×${q}</span><span>${money(x.p*q)}</span></li>`}).join('')+(coupon?`<li class="flex justify-between text-leaf"><span>DEMO100</span><span>-$100</span></li>`:'');
+$('#coTot').textContent=money(totals().t);$('#coForm').classList.remove('hidden');$('#coOk').classList.add('hidden');openM('checkM')};
+$('#coForm').onsubmit=e=>{e.preventDefault();const bad=[...e.target.querySelectorAll('[required]')].some(i=>!i.value.trim());$('#coErr').classList.toggle('hidden',!bad);if(bad)return;e.target.classList.add('hidden');$('#coOk').classList.remove('hidden');for(const k in cart)delete cart[k];coupon=0;renderCart()};
+
+/* Modals */
+function openM(id){$$('.modal.on').forEach(m=>m.classList.remove('on'));const m=$('#'+id);m.classList.add('on');if(window.gsap&&!reduce)gsap.fromTo(m.firstElementChild,{opacity:0,y:18,scale:.97},{opacity:1,y:0,scale:1,duration:.3,ease:'power3.out'})}
+function closeM(){$$('.modal.on').forEach(m=>m.classList.remove('on'))}
+document.addEventListener('click',e=>{const o=e.target.closest('[data-open]');if(o)openM(o.dataset.open);
+const tr=e.target.closest('[data-trial]');if(tr){const n=tr.dataset.trial||cmpSel.map(i=>P.find(p=>p.id===i).n).join('、');setTimeout(()=>{$('#cMsg').value=`想預約試乘：${n}`},80)}
+const cm=e.target.closest('[data-cmp]');if(cm){toggleCmp(cm.dataset.cmp);return}
+if(e.target.closest('[data-sw]'))return;
+if(e.target.closest('[data-close]')||e.target.classList.contains('modal'))closeM();
+const pr=e.target.closest('[data-prod]');if(pr)openProd(pr.dataset.prod);const ad=e.target.closest('[data-add]');if(ad){const cd=ad.closest('[data-card]'),x=ALL.find(p=>p.id===ad.dataset.add),sw=cd&&cd.querySelector('.sw.on');add(x.id,1,x.cl&&sw?x.cl[+sw.dataset.sw][0]:'');openCart()}
+const lb=e.target.closest('[data-lb]');if(lb){$('#lbImg').src=lb.dataset.lb;openM('lbM')}
+const sh=e.target.closest('[data-share]');if(sh)toast('已開啟 '+sh.dataset.share+' 分享（示意）');
+const ck=e.target.closest('[data-ck]');if(ck)$('#cookie').remove()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();closeCart()}});
+$$('[data-tab]').forEach(b=>b.onclick=()=>{const up=b.dataset.tab==='up';$$('[data-tab]').forEach(x=>x.classList.toggle('on',x===b));$('#regPhone').classList.toggle('hidden',!up);$('#lgBtn').textContent=up?'註冊':'登入';$('#lgOk').classList.add('hidden')});
+$('#lgForm').onsubmit=e=>{e.preventDefault();const bad=[...e.target.querySelectorAll('input[required]')].some(i=>!i.value.trim());if(bad)return toast('請填寫 Email 與密碼');$('#lgOk').classList.remove('hidden')};
+$('#sForm').onsubmit=e=>{e.preventDefault();const v=$('#sq').value.trim();closeM();$('#q').value=v;cat='all';$$('[data-cat]').forEach(x=>x.classList.toggle('on',x.dataset.cat==='all'));location.hash='#products';setTimeout(renderShop,60)};
+
+/* Contact form */
+$('#cForm').onsubmit=e=>{e.preventDefault();const bad=[...e.target.querySelectorAll('[required]')].some(i=>!i.value.trim());$('#cErr').classList.toggle('hidden',!bad);if(bad)return;$('#cOk').classList.remove('hidden');e.target.querySelector('button.btn').disabled=true};
+
+/* Toast */
+let tT;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),2000)}
+
+/* News */
+const NEWS=[
+ {d:'2026-07-08',t:'微型電動二輪車掛牌：還沒掛的請盡快辦理',b:'自 2022 年 11 月 30 日起須掛牌並投保強制險，違規最高可罰 3,600 元。文件怎麼準備，門市可以協助說明。',img:U+'2026/07/159778.jpg'},
+ {d:'2026-05-20',t:'強制險之外，為什麼建議加保第三責任險',b:'強制險只保最基本的傷害，碰撞到人車時賠償可能超過額度。購車時可以問我們怎麼選保額。',img:U+'2026/05/150568.jpg'},
+ {d:'2026-03-12',t:'16S 親子車到店，可預約試乘',b:'接送小學以下孩子的家長，歡迎週二到週六來店，大人小孩一起試坐。',img:U+'2026/03/16s廣告板-02.jpg'}
+];
+$('#homeNews').innerHTML=NEWS.map(n=>`<li class="py-5" data-reveal><a href="#news" class="group flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6"><time class="font-num text-bark tnum shrink-0">${n.d}</time><span class="font-bold text-xl lnk">${n.t}</span></a></li>`).join('');
+$('#newsList').innerHTML=NEWS.map(n=>`<article class="grid md:grid-cols-12 gap-6 items-center" data-reveal><div class="md:col-span-5 rounded-[16px] overflow-hidden aspect-[16/9] bg-moss"><img src="${n.img}" alt="${n.t}" loading="lazy" class="w-full h-full object-cover"></div><div class="md:col-span-7"><time class="font-num text-bark tnum">${n.d}</time><h2 class="font-hand font-bold text-3xl mt-1">${n.t}</h2><p class="mt-3 leading-8 max-w-[60ch]">${n.b}</p><div class="mt-4 flex gap-2"><button class="chip press text-sm" data-share="LINE">分享到 LINE</button><button class="chip press text-sm" data-share="Facebook">Facebook</button></div></div></article>`).join('');
+
+/* FAQ */
+const FAQ=[
+ ['微型電動二輪車要駕照嗎？','不用駕照，但要掛牌、投保強制險，並戴安全帽。'],
+ ['可以刷卡嗎？分期呢？','門市可刷卡；分期方式請直接來電或到店詢問。'],
+ ['不是在你們買的車可以修嗎？','可以，先牽來檢查，確認問題與費用再決定。'],
+ ['送車到府怎麼收費？','台北、新北都送，費用依地點而定，請來電 02-2272-2860 詢問。'],
+ ['半路沒電怎麼辦？','打電話給我們，派貨車道路救援把車收回店裡處理。'],
+ ['家裡插座可以充電嗎？','多數微型二輪車與電動輔助自行車都能用家用插座充電，請用原廠或對應規格充電器。']
+];
+$('#faqList').innerHTML=FAQ.map(([q,a])=>`<div class="acc"><button class="press w-full flex justify-between items-center gap-4 py-5 text-left font-bold text-lg" aria-expanded="false">${q}<i data-lucide="plus" class="acc-i shrink-0 text-leaf"></i></button><div class="acc-b"><div class="overflow-hidden"><p class="pb-5 text-bark leading-8">${a}</p></div></div></div>`).join('');
+$('#faqList').onclick=e=>{const b=e.target.closest('button');if(!b)return;const a=b.parentElement;a.classList.toggle('open');b.setAttribute('aria-expanded',a.classList.contains('open'))};
+
+/* Charge */
+const ST={'新北':[['板橋南雅店（本店）','南雅西路二段5號1樓'],['板橋車站周邊示意點','示意地址'],['中和示意點','示意地址']],'台北':[['萬華示意點','示意地址'],['中正示意點','示意地址']],'桃園':[['桃園車站示意點','示意地址']]};
+let rg='新北';
+function renderSt(){$('#regions').innerHTML=Object.keys(ST).map(k=>`<button class="chip press ${k===rg?'on':''}" data-rg="${k}">${k}</button>`).join('');$('#stations').innerHTML=ST[rg].map(([n,a])=>`<li class="py-4 flex gap-3"><i data-lucide="plug-zap" class="text-leaf shrink-0"></i><div><p class="font-bold">${n}</p><p class="text-bark text-sm">${a}</p></div></li>`).join('');lucide.createIcons()}
+$('#regions').onclick=e=>{const b=e.target.closest('[data-rg]');if(b){rg=b.dataset.rg;renderSt()}};
+
+/* Slider */
+let si=0;const sn=$$('#slides img').length;
+$('#dots').innerHTML=[...Array(sn)].map((_,i)=>`<button class="w-2.5 h-2.5 rounded-full ${i?'bg-moss':'bg-ink'}" data-dot="${i}" aria-label="第${i+1}張"></button>`).join('');
+function go(i){si=(i+sn)%sn;$('#slides').style.transform=`translateX(-${si*100}%)`;$$('[data-dot]').forEach((d,k)=>d.className='w-2.5 h-2.5 rounded-full '+(k===si?'bg-ink':'bg-moss'))}
+$('#sPrev').onclick=()=>go(si-1);$('#sNext').onclick=()=>go(si+1);$('#dots').onclick=e=>{const d=e.target.closest('[data-dot]');if(d)go(+d.dataset.dot)};
+setInterval(()=>go(si+1),5000);
+
+/* Typing */
+const WORDS=['VE 輕小款','16S 親子車','S9 緩啟動不爆衝'];let wi=0,ci=0,del=false;
+function typing(){const el=$('#typing');if(!el)return;const w=WORDS[wi];if(reduce){el.textContent=w;return}
+ el.textContent=w.slice(0,ci);if(!del&&ci<w.length)ci++;else if(!del){del=true;return setTimeout(typing,1600)}else if(ci>0)ci--;else{del=false;wi=(wi+1)%WORDS.length}setTimeout(typing,del?45:110)}
+
+/* Motion */
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+gsap.registerPlugin(ScrollTrigger);
+if(window.Lenis&&!reduce){const lenis=new Lenis({lerp:.1});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);window.__lenis=lenis}
+let ctx;
+function initMotion(scope){
+ ctx&&ctx.revert();if(reduce||!window.gsap)return;
+ ctx=gsap.context(()=>{
+  const mm=gsap.matchMedia();
+  if(scope.dataset.page==='home'){const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+   tl.fromTo('.hero-img',{clipPath:'inset(0 0 100% 0 round 16px)',filter:'blur(6px)'},{clipPath:'inset(0 0 0% 0 round 16px)',filter:'blur(0px)',duration:.9,ease:'expo.out'})
+     .from('.hl',{yPercent:110,duration:.7,stagger:.08},'-=.65').from('.hero-chip,.hero-sub',{y:18,opacity:0,duration:.5,stagger:.05},'-=.5')}
+  scope.querySelectorAll('[data-reveal]').forEach(el=>gsap.from(el,{y:32,opacity:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
+  scope.querySelectorAll('[data-wipe]').forEach(el=>gsap.fromTo(el,{clipPath:el.dataset.wipe==='right'?'inset(0 0 0 100%)':'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0%)',duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 85%'}}));
+  scope.querySelectorAll('[data-draw]').forEach(p=>{if(!p.getBBox().width&&!p.getBBox().height)return;const len=p.getTotalLength();gsap.set(p,{strokeDasharray:len,strokeDashoffset:len});gsap.to(p,{strokeDashoffset:0,ease:'none',scrollTrigger:{trigger:p.closest('ol')?p.closest('div'):p.parentElement.parentElement,start:'top 70%',end:'bottom 60%',scrub:true}})});
+  scope.querySelectorAll('ol li').forEach((li,i)=>gsap.from(li,{opacity:0,y:24,duration:.6,delay:(i%5)*.06,ease:'power3.out',scrollTrigger:{trigger:li,start:'top 85%'}}));
+  mm.add('(min-width: 900px)',()=>{});
+ },scope);
+ requestAnimationFrame(()=>ScrollTrigger.refresh());
+}
+
+/* Router */
+const PAGES=$$('[data-page]').map(s=>s.dataset.page);
+$('#mnav .nav').innerHTML=$('#mainNav').innerHTML;
+function route(){let h=location.hash.slice(1)||'home';if(!PAGES.includes(h))h='home';
+ ctx&&ctx.revert();$$('[data-page]').forEach(s=>s.classList.toggle('on',s.dataset.page===h));
+ $$('.nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+h));
+ $('#mnav').classList.add('hidden');closeCart();
+ window.__lenis?window.__lenis.scrollTo(0,{immediate:true}):scrollTo(0,0);
+ if(h==='products')renderShop();
+ requestAnimationFrame(()=>initMotion($(`[data-page="${h}"]`)))}
+addEventListener('hashchange',route);
+$('#burger').onclick=()=>$('#mnav').classList.toggle('hidden');
+document.addEventListener('click',e=>{const a=e.target.closest('[data-scroll]');if(!a)return;e.preventDefault();const t=$(a.getAttribute('href'));window.__lenis?window.__lenis.scrollTo(t,{offset:-70}):t.scrollIntoView({behavior:'smooth'})});
+addEventListener('scroll',()=>$('#hdr').classList.toggle('small',scrollY>40),{passive:true});
+
+$('#yr').textContent=new Date().getFullYear();
+renderCart();renderSt();renderCmpBar();lucide.createIcons();typing();route();
+</script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:2147483000;background:rgba(17,17,17,.82);color:#fff;font:12px/1.4 system-ui,sans-serif;padding:6px 11px;border-radius:999px;pointer-events:none">Demo 示意・Morcept Design</div></body>
+</html>
